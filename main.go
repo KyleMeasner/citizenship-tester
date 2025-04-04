@@ -73,7 +73,7 @@ func AskQuestions(questions []Question, numberToAsk int) {
 		remaining[i] = i
 	}
 
-	for range numberToAsk {
+	for questionNumber := range numberToAsk {
 		output.ClearScreen()
 
 		i := rand.Intn(len(remaining))
@@ -81,7 +81,7 @@ func AskQuestions(questions []Question, numberToAsk int) {
 		remaining = append(remaining[:i], remaining[i+1:]...)
 
 		fmt.Println()
-		questionString := output.String("Question:", question.Question).Bold().Italic()
+		questionString := output.String(fmt.Sprintf("[%d/%d]", questionNumber+1, numberToAsk), question.Question).Bold().Italic()
 		fmt.Println(questionString)
 
 		WaitForEnter()
